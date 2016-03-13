@@ -16,8 +16,9 @@ public class UIManager : MonoBehaviour {
 	void Start () {
 		gameOver = false;
 
-	
+		//Update score dengan Invoke, Parameter berisi String yang merujuk pada method scoreUpdate, waktu invoke dan repeatRate nya
 		InvokeRepeating ("scoreUpdate", 1.0f, 2.0f);
+
 	}
 
 	// Update is called once per frame
@@ -28,6 +29,7 @@ public class UIManager : MonoBehaviour {
 		//highscore
 		storeHighScore (score);
 		scoreText.text = "Score: " + score + " Miles";
+		//Menyimpan highsor edengan palyerpref
 		highScoreText.text = "Highscore: " + PlayerPrefs.GetInt("highscore");
 		//scoreUpdate (); terlalu cepat pake invoke
 	}
@@ -46,13 +48,18 @@ public class UIManager : MonoBehaviour {
 		}
 	}
 		
-	//high score
+	//method untuk menyimpan highscore
 	void storeHighScore(int newHighscore) {
+
+		//membuat variabel baru dan get tipe integer score dengan tag "highscore" dan set ke 0 (utk pertama kali main)
 		int oldHighscore = PlayerPrefs.GetInt("highscore", 0);    
+		//Jika score baru lebih besar dari score lama
 		if(newHighscore > oldHighscore)
 		{
+			//Menset highscore dengan playerpref dengan nilai baru yaitu newHighscore
 			PlayerPrefs.SetInt("highscore", newHighscore);
 			oldHighscore = newHighscore;
+			//Menyimpan score ke variabel local
 			PlayerPrefs.Save();
 		}
 	}

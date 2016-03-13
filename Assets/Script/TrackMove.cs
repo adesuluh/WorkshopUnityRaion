@@ -14,7 +14,6 @@ public class TrackMove : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		//SATU
 		offset = new Vector2 (0, Time.time * speed);// time.time means equal to second, sync with second
 
 		GetComponent<Renderer> ().material.mainTextureOffset = offset;
